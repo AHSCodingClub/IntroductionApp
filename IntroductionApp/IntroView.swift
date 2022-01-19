@@ -5,12 +5,13 @@
 //  Created by A. Zheng (github.com/aheze) on 1/18/22.
 //  Copyright © 2022 A. Zheng. All rights reserved.
 //
-    
+
 
 import SwiftUI
 
 struct IntroView: View {
     @Binding var index: Int
+    
     var body: some View {
         VStack(spacing: 32) {
             HStack(spacing: 16) {
@@ -37,17 +38,19 @@ struct IntroView: View {
             
             Spacer()
             
-            Button {
-                withAnimation {
-                    index += 1
+            if admin {
+                Button {
+                    withAnimation {
+                        index += 1
+                    }
+                } label: {
+                    Text("Start")
+                        .foregroundColor(.white)
+                        .font(.system(size: 80, weight: .bold))
+                        .padding(EdgeInsets(top: 20, leading: 40, bottom: 20, trailing: 40))
+                        .background(.white.opacity(0.25))
+                        .cornerRadius(32)
                 }
-            } label: {
-                Text("Start")
-                    .foregroundColor(.white)
-                    .font(.system(size: 80, weight: .bold))
-                    .padding(EdgeInsets(top: 20, leading: 40, bottom: 20, trailing: 40))
-                    .background(.white.opacity(0.25))
-                    .cornerRadius(32)
             }
         }
         .foregroundColor(.white)

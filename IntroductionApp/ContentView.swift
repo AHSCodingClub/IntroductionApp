@@ -11,20 +11,30 @@ import SwiftUI
 
 let admin = UIDevice.current.name == "iPad Pro"
 
+class GlobalViewModel: ObservableObject {
+    @Published var drawingImage: UIImage?
+}
 struct ContentView: View {
+    @StateObject var globalViewModel = GlobalViewModel()
     @State var index = 0
+    
     var body: some View {
         if admin {
-            switch index {
-            case 0:
-                IntroView(index: $index)
-            case 1:
-                DrawingView()
-            default:
-                Color.clear
+            ZStack {
+                DrawingView(index: $index, globalViewModel: globalViewModel)
+                    .opacity(index == 1 ? 1 : 0)
+                
+                switch index {
+                case 0:
+                    IntroView(index: $index)
+                case 2:
+                    FaceView(index: $index, globalViewModel: globalViewModel)
+                default:
+                    Color.clear
+                }
             }
         } else {
-            DrawingView()
+            DrawingView(index: $index, globalViewModel: globalViewModel)
         }
     }
 }

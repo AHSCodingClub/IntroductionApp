@@ -10,44 +10,83 @@ import PencilKit
 import SwiftUI
 
 struct DrawingView: View {
+    @Binding var index: Int
+    @ObservedObject var globalViewModel: GlobalViewModel
     @StateObject var model = DrawingViewModel()
     @State var selectedColor: UInt = 0x00AEEF
     
     var body: some View {
-        HStack(spacing: 24) {
-            Group {
-                CanvasView(model: model, canvasView: $model.canvasView, selectedColor: $selectedColor) {
-                    model.update()
-                }
-                .overlay {
-                    Image("PersonOutline")
-                        .resizable()
-                        .opacity(0.5)
-                        .allowsHitTesting(false)
-                }
-                .overlay(alignment: .topLeading) {
-                    HStack {
-                        if admin {
-                            Button {
-                                model.canvasView.drawing = PKDrawing()
-                                model.update()
-                            } label: {
-                                Text("Clear Drawing")
-                            }
-                        }
-                        
-                        Text(verbatim: "Connected to: \(model.connectedPeers.map { $0.displayName })")
+        if model.unlocked || admin {
+            HStack(spacing: 24) {
+                Group {
+                    CanvasView(model: model, canvasView: $model.canvasView, selectedColor: $selectedColor) {
+                        model.update()
                     }
-                    .padding()
+                    .overlay {
+                        Image("PersonOutline")
+                            .resizable()
+                            .opacity(0.5)
+                            .allowsHitTesting(false)
+                    }
+                    .overlay(alignment: .topLeading) {
+                        HStack(spacing: 20) {
+                            if admin {
+                                Button {
+                                    withAnimation {
+                                        index -= 1
+                                    }
+                                } label: {
+                                    Image(systemName: "chevron.left")
+                                }
+                                
+                                Button {
+                                    model.canvasView.drawing = PKDrawing()
+                                    model.update()
+                                } label: {
+                                    Text("Clear Drawing")
+                                        .foregroundColor(.red)
+                                }
+                                
+                                Button {
+                                    if model.unlocked {
+                                        model.unlock(false)
+                                    } else {
+                                        model.unlock(true)
+                                    }
+                                } label: {
+                                    Text(model.unlocked ? "Lock Drawing" : "Unlock Drawing")
+                                }
+                                
+                                Button {
+                                    let image = model.canvasView.drawing.image(from: model.canvasView.bounds, scale: 2)
+                                    globalViewModel.drawingImage = image
+                                    withAnimation {
+                                        index += 1
+                                    }
+                                } label: {
+                                    Image(systemName: "chevron.right")
+                                }
+                            }
+                            
+                            Text(verbatim: "Connected to: \(model.connectedPeers.map { $0.displayName })")
+                        }
+                        .padding()
+                        .background(Color.white)
+                        .cornerRadius(12)
+                        .shadow(color: .black.opacity(0.1), radius: 4, x: 0, y: 3)
+                        .padding()
+                    }
+                    PaletteView(selectedColor: $selectedColor)
                 }
-                PaletteView(selectedColor: $selectedColor)
+                .cornerRadius(32)
+                .shadow(color: .black.opacity(0.3), radius: 16, x: 0, y: 3)
             }
-            .cornerRadius(32)
-            .shadow(color: .black.opacity(0.3), radius: 16, x: 0, y: 3)
-        }
-        .padding(24)
-        .onChange(of: selectedColor) { newValue in
-            model.colorChanged?()
+            .padding(24)
+            .onChange(of: selectedColor) { newValue in
+                model.colorChanged?()
+            }
+        } else {
+            IntroView(index: .constant(0))
         }
     }
 }

@@ -22,6 +22,7 @@ class DrawingViewModel: NSObject, ObservableObject {
     var receivedStrokes = [PKStroke]()
     @Published var canvasView = PKCanvasView()
     @Published var connectedPeers: [MCPeerID] = []
+    @Published var unlocked = false
     
     let serviceType = "my-service"
     var peerID: MCPeerID!
@@ -50,6 +51,23 @@ class DrawingViewModel: NSObject, ObservableObject {
         if !session.connectedPeers.isEmpty {
             do {
                 let data = canvasView.drawing.dataRepresentation()
+                try session.send(data, toPeers: session.connectedPeers, with: .reliable)
+            } catch {
+                print("Error for sending: \(String(describing: error))")
+            }
+        }
+    }
+    
+    func unlock(_ unlock: Bool) {
+        self.unlocked = unlock
+        if !session.connectedPeers.isEmpty {
+            do {
+                let data: Data
+                if unlock {
+                    data = Data("unlocked".utf8)
+                } else {
+                    data = Data("locked".utf8)
+                }
                 try session.send(data, toPeers: session.connectedPeers, with: .reliable)
             } catch {
                 print("Error for sending: \(String(describing: error))")
@@ -110,11 +128,18 @@ extension DrawingViewModel: MCSessionDelegate {
                         self.canvasView.drawing.strokes = strokes
                     }
                 }
-                
-                
             }
         } catch {
-            print("Couldn't make drawing: \(error)")
+            DispatchQueue.main.async {
+                withAnimation {
+                    let str = String(decoding: data, as: UTF8.self)
+                    if str == "unlocked" {
+                        self.unlocked = true
+                    } else {
+                        self.unlocked = false
+                    }
+                }
+            }
         }
     }
 
