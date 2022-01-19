@@ -42,12 +42,12 @@ extension BubbleViewController {
                 
                 for row in -5..<5 {
                     for column in -5..<5 {
-                        let rowOffset = Float(row) * 0.3
-                        let columnOffset = Float(column) * 0.3
+                        let rowOffset = Float(row) * 0.35
+                        let columnOffset = Float(column) * 0.35
                         let position = SCNVector3(
-                            x: position.x + rowOffset,
-                            y: position.y,
-                            z: position.z + columnOffset
+                            x: position.x + rowOffset + Float.random(in: -0.08...0.08),
+                            y: position.y + Float.random(in: -0.08...0.08),
+                            z: position.z + columnOffset + Float.random(in: -0.08...0.08)
                         )
                         self.spawnSphere(position: position)
                     }
