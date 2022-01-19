@@ -6,13 +6,13 @@
 //  Copyright © 2022 A. Zheng. All rights reserved.
 //
 
-
-import SwiftUI
 import PencilKit
+import SwiftUI
 
 class DrawingViewModel: ObservableObject {
     var colorChanged: (() -> Void)?
 }
+
 struct DrawingView: View {
     @StateObject var model = DrawingViewModel()
     @State var canvasView = PKCanvasView()
@@ -23,6 +23,12 @@ struct DrawingView: View {
             Group {
                 CanvasView(model: model, canvasView: $canvasView, selectedColor: $selectedColor) {
                     print("s: \(canvasView.drawing.strokes)")
+                }
+                .overlay {
+                    Image("PersonOutline")
+                        .resizable()
+                        .opacity(0.5)
+                        .allowsHitTesting(false)
                 }
                 PaletteView(selectedColor: $selectedColor)
             }
@@ -68,7 +74,7 @@ struct ColorButton: View {
     let hex: UInt
     @Binding var selectedColor: UInt
     
-    let action: ((UInt) -> Void)
+    let action: (UInt) -> Void
     var body: some View {
         Button {
             action(hex)
@@ -102,7 +108,7 @@ struct CanvasView: UIViewRepresentable {
     let onSaved: () -> Void
     
     func makeUIView(context: Context) -> PKCanvasView {
-        canvasView.tool = PKInkingTool(.pen, color: UIColor(hex: 0x00aeef), width: 10)
+        canvasView.tool = PKInkingTool(.pen, color: UIColor(hex: 0x00AEEF), width: 10)
         canvasView.drawingPolicy = .anyInput
         canvasView.delegate = context.coordinator
         
@@ -118,8 +124,7 @@ struct CanvasView: UIViewRepresentable {
         return canvasView
     }
     
-    func updateUIView(_ uiView: PKCanvasView, context: Context) {
-    }
+    func updateUIView(_ uiView: PKCanvasView, context: Context) {}
     
     func makeCoordinator() -> Coordinator {
         Coordinator(canvasView: $canvasView, onSaved: onSaved)
@@ -130,15 +135,16 @@ struct CanvasView: UIViewRepresentable {
         let onSaved: () -> Void
         
         // MARK: - Initializers
+
         init(canvasView: Binding<PKCanvasView>, onSaved: @escaping () -> Void) {
             self.canvasView = canvasView
             self.onSaved = onSaved
         }
+
         func canvasViewDrawingDidChange(_ canvasView: PKCanvasView) {
             if !canvasView.drawing.bounds.isEmpty {
                 onSaved()
             }
         }
     }
-    
 }
