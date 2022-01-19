@@ -15,6 +15,8 @@ struct ContentView: View {
         switch index {
         case 0:
             IntroView(index: $index)
+        case 1:
+            DrawingView()
         default:
             Color.clear
         }
