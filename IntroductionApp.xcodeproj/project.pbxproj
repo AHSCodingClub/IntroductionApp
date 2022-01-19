@@ -35,6 +35,8 @@
 		3CAD8C2A2798997F007B55BA /* 2Re.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3CAD8C182798997F007B55BA /* 2Re.mp3 */; };
 		3CAD8C2B2798997F007B55BA /* 5So.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3CAD8C192798997F007B55BA /* 5So.mp3 */; };
 		3CAD8C2C2798997F007B55BA /* 1Do.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3CAD8C1A2798997F007B55BA /* 1Do.mp3 */; };
+		3CAD8C2E2798AC08007B55BA /* WrapUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAD8C2D2798AC08007B55BA /* WrapUpView.swift */; };
+		3CAD8C302798B0AD007B55BA /* SwiftView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAD8C2F2798B0AD007B55BA /* SwiftView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +70,8 @@
 		3CAD8C182798997F007B55BA /* 2Re.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 2Re.mp3; sourceTree = "<group>"; };
 		3CAD8C192798997F007B55BA /* 5So.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 5So.mp3; sourceTree = "<group>"; };
 		3CAD8C1A2798997F007B55BA /* 1Do.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 1Do.mp3; sourceTree = "<group>"; };
+		3CAD8C2D2798AC08007B55BA /* WrapUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrapUpView.swift; sourceTree = "<group>"; };
+		3CAD8C2F2798B0AD007B55BA /* SwiftView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +108,8 @@
 				3CAD8BD527979FEE007B55BA /* IntroductionAppApp.swift */,
 				3CAD8BD727979FEE007B55BA /* ContentView.swift */,
 				3CAD8BE52797A3A6007B55BA /* IntroView.swift */,
+				3CAD8C2F2798B0AD007B55BA /* SwiftView.swift */,
+				3CAD8C2D2798AC08007B55BA /* WrapUpView.swift */,
 				3CAD8BEB2797ACE7007B55BA /* Drawing */,
 				3CAD8BEF2797CC78007B55BA /* Face */,
 				3CAD8BF827987522007B55BA /* Bubbles */,
@@ -251,6 +257,8 @@
 				3CAD8BFE27987E70007B55BA /* BubbleVC+AR.swift in Sources */,
 				3CAD8BE62797A3A6007B55BA /* IntroView.swift in Sources */,
 				3CAD8BF12797CC85007B55BA /* VideoViewController.swift in Sources */,
+				3CAD8C302798B0AD007B55BA /* SwiftView.swift in Sources */,
+				3CAD8C2E2798AC08007B55BA /* WrapUpView.swift in Sources */,
 				3CAD8BEE2797CAD0007B55BA /* FaceView.swift in Sources */,
 				3CAD8BFA279875D1007B55BA /* BubbleViewController.swift in Sources */,
 				3CAD8BFC279875F8007B55BA /* BubbleViewModel.swift in Sources */,

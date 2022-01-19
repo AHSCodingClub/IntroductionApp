@@ -12,16 +12,18 @@ import ARKit
 
 
 struct BubbleARViewControllerRepresentable: UIViewControllerRepresentable {
+    @ObservedObject var globalViewModel: GlobalViewModel
     @ObservedObject var model: BubbleViewModel
 
     func makeUIViewController(context _: Context) -> BubbleViewController {
-        return BubbleViewController(model: model)
+        return BubbleViewController(globalViewModel: globalViewModel, model: model)
     }
 
     func updateUIViewController(_: BubbleViewController, context _: Context) {}
 }
 
 class BubbleViewController: UIViewController, ARSCNViewDelegate {
+    var globalViewModel: GlobalViewModel
     var model: BubbleViewModel
     var sceneView: ARSCNView!
     var soundEffect: AVAudioPlayer?
@@ -29,6 +31,7 @@ class BubbleViewController: UIViewController, ARSCNViewDelegate {
     
     var startTime: Date?
     var nodes = [SCNNode]()
+    var currentBigCircleIndex = 0
 
     let configuration = ARWorldTrackingConfiguration()
 
@@ -37,7 +40,8 @@ class BubbleViewController: UIViewController, ARSCNViewDelegate {
         fatalError("init(coder:) has not been implemented")
     }
 
-    init(model: BubbleViewModel) {
+    init(globalViewModel: GlobalViewModel, model: BubbleViewModel) {
+        self.globalViewModel = globalViewModel
         self.model = model
         configuration.planeDetection = .horizontal
         super.init(nibName: nil, bundle: nil)
@@ -68,6 +72,10 @@ class BubbleViewController: UIViewController, ARSCNViewDelegate {
         sceneView.autoenablesDefaultLighting = true
         sceneView.session.run(configuration)
         sceneView.session.delegate = self
+        
+//        sceneView.audioEnvironmentNode.distanceAttenuationParameters.maximumDistance = 4 /// how many meters to adjust the sound in fragments
+//        sceneView.audioEnvironmentNode.distanceAttenuationParameters.referenceDistance = 0.05
+//        sceneView.audioEnvironmentNode.renderingAlgorithm = .auto
         
         setup()
         setupListener()

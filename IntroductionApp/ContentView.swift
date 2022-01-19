@@ -22,15 +22,19 @@ struct ContentView: View {
         if admin {
             ZStack {
                 DrawingView(admin: $admin, index: $index, globalViewModel: globalViewModel)
-                    .opacity(index == 1 ? 1 : 0)
+                    .opacity(index == 2 ? 1 : 0)
 
                 switch index {
                 case 0:
                     IntroView(admin: $admin, index: $index)
-                case 2:
-                    FaceView(admin: admin, index: $index, globalViewModel: globalViewModel)
+                case 1:
+                    SwiftView(index: $index)
                 case 3:
+                    FaceView(admin: admin, index: $index, globalViewModel: globalViewModel)
+                case 4:
                     BubbleView(admin: admin, index: $index, globalViewModel: globalViewModel)
+                case 5:
+                    WrapUpView(index: $index)
                 default:
                     Color.clear
                 }

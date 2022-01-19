@@ -54,6 +54,41 @@ extension BubbleViewController {
                 }
             }
         }
+        
+        model.go = { [weak self] in
+            guard let self = self else { return }
+            
+            let sphereGeometry = SCNSphere(radius: 0.6)
+            
+            let material = SCNMaterial()
+            material.lightingModel = .blinn
+            material.transparencyMode = .dualLayer
+            material.fresnelExponent = 2.5
+            material.isDoubleSided = true
+            material.specular.contents = UIColor(white: 0.6, alpha: 1.0)
+            material.diffuse.contents = UIImage(named: "Texture2")!
+            material.shininess = 80
+            material.reflective.contents = UIColor.gray.withAlphaComponent(0.7)
+            sphereGeometry.materials = [material]
+            
+            let node = SCNNode(geometry: sphereGeometry)
+            if let position = self.getPosition() {
+                let basePosition = SCNVector3(
+                    x: position.x,
+                    y: position.y + 5.8,
+                    z: position.z
+                )
+                node.position = basePosition
+            }
+            
+            let moveDown = SCNAction.move(by: SCNVector3(0, -5, 0), duration: 5)
+            node.name = "Big Sphere"
+            node.runAction(moveDown)
+            
+            self.nodes.append(node)
+            self.sceneView.scene.rootNode.addChildNode(node)
+            
+        }
     }
     
     func spawnSphere(position: SCNVector3) {
@@ -66,7 +101,7 @@ extension BubbleViewController {
         material.isDoubleSided = true
         material.specular.contents = UIColor(white: 0.6, alpha: 1.0)
         material.diffuse.contents = UIImage(named: "Texture")!
-        material.shininess =  80
+        material.shininess = 80
         material.reflective.contents = UIColor.gray.withAlphaComponent(0.7)
         sphereGeometry.materials = [material]
         
