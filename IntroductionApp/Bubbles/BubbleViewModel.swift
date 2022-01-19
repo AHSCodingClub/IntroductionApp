@@ -10,5 +10,5 @@
 import SwiftUI
 
 class BubbleViewModel: ObservableObject {
-    
+    @Published var handPositions = [CGPoint]()
 }

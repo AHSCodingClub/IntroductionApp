@@ -24,6 +24,8 @@ struct BubbleARViewControllerRepresentable: UIViewControllerRepresentable {
 class BubbleViewController: UIViewController, ARSCNViewDelegate {
     var model: BubbleViewModel
     var sceneView: ARSCNView!
+    
+    var startTime: Date?
     var nodes = [SCNNode]()
 
     let configuration = ARWorldTrackingConfiguration()
@@ -36,9 +38,7 @@ class BubbleViewController: UIViewController, ARSCNViewDelegate {
     init(model: BubbleViewModel) {
         self.model = model
         configuration.planeDetection = .horizontal
-
         super.init(nibName: nil, bundle: nil)
-
     }
 
     var crosshairImageView: UIImageView!
@@ -56,16 +56,6 @@ class BubbleViewController: UIViewController, ARSCNViewDelegate {
             sceneView.rightAnchor.constraint(equalTo: view.rightAnchor),
             sceneView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             sceneView.leftAnchor.constraint(equalTo: view.leftAnchor),
-        ])
-
-        let configuration = UIImage.SymbolConfiguration(pointSize: 36)
-        let image = UIImage(systemName: "plus", withConfiguration: configuration)?.withTintColor(.white, renderingMode: .alwaysOriginal)
-        crosshairImageView = UIImageView(image: image)
-        view.addSubview(crosshairImageView)
-        crosshairImageView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            crosshairImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            crosshairImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
         ])
 
         sceneView.debugOptions = [ARSCNDebugOptions.showFeaturePoints]

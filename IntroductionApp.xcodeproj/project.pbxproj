@@ -23,6 +23,7 @@
 		3CAD8BFA279875D1007B55BA /* BubbleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAD8BF9279875D1007B55BA /* BubbleViewController.swift */; };
 		3CAD8BFC279875F8007B55BA /* BubbleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAD8BFB279875F8007B55BA /* BubbleViewModel.swift */; };
 		3CAD8BFE27987E70007B55BA /* BubbleVC+AR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAD8BFD27987E70007B55BA /* BubbleVC+AR.swift */; };
+		3CAD8C0027988210007B55BA /* BubbleVC+Vision.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAD8BFF27988210007B55BA /* BubbleVC+Vision.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		3CAD8BF9279875D1007B55BA /* BubbleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleViewController.swift; sourceTree = "<group>"; };
 		3CAD8BFB279875F8007B55BA /* BubbleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleViewModel.swift; sourceTree = "<group>"; };
 		3CAD8BFD27987E70007B55BA /* BubbleVC+AR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BubbleVC+AR.swift"; sourceTree = "<group>"; };
+		3CAD8BFF27988210007B55BA /* BubbleVC+Vision.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BubbleVC+Vision.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,10 +123,11 @@
 		3CAD8BF827987522007B55BA /* Bubbles */ = {
 			isa = PBXGroup;
 			children = (
-				3CAD8BF627987519007B55BA /* BubbleView.swift */,
 				3CAD8BFB279875F8007B55BA /* BubbleViewModel.swift */,
+				3CAD8BF627987519007B55BA /* BubbleView.swift */,
 				3CAD8BF9279875D1007B55BA /* BubbleViewController.swift */,
 				3CAD8BFD27987E70007B55BA /* BubbleVC+AR.swift */,
+				3CAD8BFF27988210007B55BA /* BubbleVC+Vision.swift */,
 			);
 			path = Bubbles;
 			sourceTree = "<group>";
@@ -200,6 +203,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3CAD8BE42797A092007B55BA /* Utilities.swift in Sources */,
+				3CAD8C0027988210007B55BA /* BubbleVC+Vision.swift in Sources */,
 				3CAD8BFE27987E70007B55BA /* BubbleVC+AR.swift in Sources */,
 				3CAD8BE62797A3A6007B55BA /* IntroView.swift in Sources */,
 				3CAD8BF12797CC85007B55BA /* VideoViewController.swift in Sources */,

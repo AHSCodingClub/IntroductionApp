@@ -17,6 +17,14 @@ struct BubbleView: View {
     
     var body: some View {
         BubbleARViewControllerRepresentable(model: model)
+            .overlay {
+                ForEach(model.handPositions, id: \.x.self) { point in
+                    Circle()
+                        .fill(.white)
+                        .frame(width: 50, height: 50)
+                        .position(point)
+                }
+            }
             .overlay(alignment: .top) {
                 BubbleTopBarView(admin: admin, index: $index, globalViewModel: globalViewModel)
             }

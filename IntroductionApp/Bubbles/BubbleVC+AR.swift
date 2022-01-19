@@ -9,9 +9,14 @@
 
 import SwiftUI
 import ARKit
+import Vision
 
 extension BubbleViewController: ARSessionDelegate {
     func session(_ session: ARSession, didUpdate frame: ARFrame) {
-        print("fr: \(frame.capturedImage)")
+        guard startTime == nil else { return }
+        run(pixelBuffer: frame.capturedImage) { [weak self] poses in
+            guard let self = self else { return }
+            self.model.handPositions = poses.map { $0.point }
+        }
     }
 }
