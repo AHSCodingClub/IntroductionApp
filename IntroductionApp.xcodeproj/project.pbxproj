@@ -14,6 +14,7 @@
 		3CAD8BE42797A092007B55BA /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAD8BE32797A092007B55BA /* Utilities.swift */; };
 		3CAD8BE62797A3A6007B55BA /* IntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAD8BE52797A3A6007B55BA /* IntroView.swift */; };
 		3CAD8BE82797A3EF007B55BA /* DrawingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAD8BE72797A3EF007B55BA /* DrawingView.swift */; };
+		3CAD8BEA2797ACE4007B55BA /* DrawingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAD8BE92797ACE4007B55BA /* DrawingViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,8 @@
 		3CAD8BE32797A092007B55BA /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		3CAD8BE52797A3A6007B55BA /* IntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroView.swift; sourceTree = "<group>"; };
 		3CAD8BE72797A3EF007B55BA /* DrawingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingView.swift; sourceTree = "<group>"; };
+		3CAD8BE92797ACE4007B55BA /* DrawingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingViewModel.swift; sourceTree = "<group>"; };
+		3CAD8BEC2797B2B4007B55BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,9 +60,10 @@
 		3CAD8BD427979FEE007B55BA /* IntroductionApp */ = {
 			isa = PBXGroup;
 			children = (
+				3CAD8BEC2797B2B4007B55BA /* Info.plist */,
 				3CAD8BD527979FEE007B55BA /* IntroductionAppApp.swift */,
 				3CAD8BD727979FEE007B55BA /* ContentView.swift */,
-				3CAD8BE72797A3EF007B55BA /* DrawingView.swift */,
+				3CAD8BEB2797ACE7007B55BA /* Drawing */,
 				3CAD8BE52797A3A6007B55BA /* IntroView.swift */,
 				3CAD8BE32797A092007B55BA /* Utilities.swift */,
 				3CAD8BD927979FEF007B55BA /* Assets.xcassets */,
@@ -74,6 +78,15 @@
 				3CAD8BDC27979FEF007B55BA /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		3CAD8BEB2797ACE7007B55BA /* Drawing */ = {
+			isa = PBXGroup;
+			children = (
+				3CAD8BE72797A3EF007B55BA /* DrawingView.swift */,
+				3CAD8BE92797ACE4007B55BA /* DrawingViewModel.swift */,
+			);
+			path = Drawing;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -151,6 +164,7 @@
 				3CAD8BE82797A3EF007B55BA /* DrawingView.swift in Sources */,
 				3CAD8BD827979FEE007B55BA /* ContentView.swift in Sources */,
 				3CAD8BD627979FEE007B55BA /* IntroductionAppApp.swift in Sources */,
+				3CAD8BEA2797ACE4007B55BA /* DrawingViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -284,6 +298,8 @@
 				DEVELOPMENT_TEAM = YA533DMD5J;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = IntroductionApp/Info.plist;
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "Connect to other iPads";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -313,6 +329,8 @@
 				DEVELOPMENT_TEAM = YA533DMD5J;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = IntroductionApp/Info.plist;
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "Connect to other iPads";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

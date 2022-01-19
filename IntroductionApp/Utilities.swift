@@ -26,3 +26,11 @@ public extension UIColor {
         )
     }
 }
+
+/// https://stackoverflow.com/a/46354989/14351818
+public extension Array where Element: Hashable {
+    func uniqued() -> [Element] {
+        var seen = Set<Element>()
+        return filter{ seen.insert($0).inserted }
+    }
+}

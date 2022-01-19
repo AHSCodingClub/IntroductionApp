@@ -9,26 +9,25 @@
 import PencilKit
 import SwiftUI
 
-class DrawingViewModel: ObservableObject {
-    var colorChanged: (() -> Void)?
-}
-
 struct DrawingView: View {
     @StateObject var model = DrawingViewModel()
-    @State var canvasView = PKCanvasView()
     @State var selectedColor: UInt = 0x00AEEF
     
     var body: some View {
         HStack(spacing: 24) {
             Group {
-                CanvasView(model: model, canvasView: $canvasView, selectedColor: $selectedColor) {
-                    print("s: \(canvasView.drawing.strokes)")
+                CanvasView(model: model, canvasView: $model.canvasView, selectedColor: $selectedColor) {
+                    model.update()
                 }
                 .overlay {
                     Image("PersonOutline")
                         .resizable()
                         .opacity(0.5)
                         .allowsHitTesting(false)
+                }
+                .overlay(alignment: .topLeading) {
+                    Text(verbatim: "Connected to: \(model.connectedPeers.map { $0.displayName })")
+                        .padding()
                 }
                 PaletteView(selectedColor: $selectedColor)
             }
@@ -127,23 +126,36 @@ struct CanvasView: UIViewRepresentable {
     func updateUIView(_ uiView: PKCanvasView, context: Context) {}
     
     func makeCoordinator() -> Coordinator {
-        Coordinator(canvasView: $canvasView, onSaved: onSaved)
+        Coordinator(canvasView: $canvasView, model: model, onSaved: onSaved)
     }
     
     class Coordinator: NSObject, PKCanvasViewDelegate {
-        var canvasView: Binding<PKCanvasView>
+        @Binding var canvasView: PKCanvasView
+        var model: DrawingViewModel
         let onSaved: () -> Void
         
         // MARK: - Initializers
 
-        init(canvasView: Binding<PKCanvasView>, onSaved: @escaping () -> Void) {
-            self.canvasView = canvasView
+        init(canvasView: Binding<PKCanvasView>, model: DrawingViewModel, onSaved: @escaping () -> Void) {
+            self._canvasView = canvasView
+            self.model = model
             self.onSaved = onSaved
         }
 
-        func canvasViewDrawingDidChange(_ canvasView: PKCanvasView) {
-            if !canvasView.drawing.bounds.isEmpty {
-                onSaved()
+        func canvasViewDidBeginUsingTool(_ canvasView: PKCanvasView) {
+            model.isDrawing = true
+        }
+        func canvasViewDidEndUsingTool(_ canvasView: PKCanvasView) {
+            model.isDrawing = false
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                var strokes = canvasView.drawing.strokes + self.model.receivedStrokes
+                strokes = strokes.uniqued()
+                canvasView.drawing.strokes = strokes
+                
+                if !canvasView.drawing.bounds.isEmpty {
+                    self.onSaved()
+                }
             }
         }
     }
