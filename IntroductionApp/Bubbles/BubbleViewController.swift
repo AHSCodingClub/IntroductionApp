@@ -24,6 +24,8 @@ struct BubbleARViewControllerRepresentable: UIViewControllerRepresentable {
 class BubbleViewController: UIViewController, ARSCNViewDelegate {
     var model: BubbleViewModel
     var sceneView: ARSCNView!
+    var soundEffect: AVAudioPlayer?
+
     
     var startTime: Date?
     var nodes = [SCNNode]()
@@ -68,5 +70,6 @@ class BubbleViewController: UIViewController, ARSCNViewDelegate {
         sceneView.session.delegate = self
         
         setup()
+        setupListener()
     }
 }

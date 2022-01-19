@@ -16,4 +16,5 @@ class BubbleViewModel: ObservableObject {
     var go: (() -> Void)?
     
     @Published var handPositions = [CGPoint]()
+    var handPositionsChanged: (() -> Void)?
 }

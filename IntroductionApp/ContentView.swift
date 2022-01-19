@@ -16,7 +16,7 @@ class GlobalViewModel: ObservableObject {
 struct ContentView: View {
     @AppStorage("isAdmin") var admin = false
     @StateObject var globalViewModel = GlobalViewModel()
-    @State var index = 3
+    @State var index = 0
 
     var body: some View {
         if admin {

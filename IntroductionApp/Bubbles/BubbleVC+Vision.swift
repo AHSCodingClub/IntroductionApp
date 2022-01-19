@@ -23,13 +23,6 @@ extension BubbleViewController {
             }
         }
         
-        if let image = UIImage(pixelBuffer: pixelBuffer) {
-//            print(image)
-            
-            
-            
-        }
-        
         let imageRequestHandler = VNImageRequestHandler(cvPixelBuffer: pixelBuffer, orientation: .up)
         startTime = Date()
         
@@ -61,7 +54,7 @@ extension BubbleViewController {
                     x: point.x * view.bounds.width,
                     y: (1 - point.y) * view.bounds.height
                 )
-                print("p: \(convertedPoint)")
+
                 let pose = HandPose(
                     point: convertedPoint
                 )
@@ -73,8 +66,5 @@ extension BubbleViewController {
         }
         
         return poses
-        //
-        //        startTime = nil
-        //        return observations
     }
 }

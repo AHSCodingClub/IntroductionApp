@@ -17,6 +17,7 @@ extension BubbleViewController: ARSessionDelegate {
         run(pixelBuffer: frame.capturedImage) { [weak self] poses in
             guard let self = self else { return }
             self.model.handPositions = poses.map { $0.point }
+            self.model.handPositionsChanged?()
         }
     }
 }
@@ -35,13 +36,12 @@ extension BubbleViewController {
             if let position = self.getPosition() {
                 let basePosition = SCNVector3(
                     x: position.x,
-                    y: position.y + 1.2,
+                    y: position.y + 2.8,
                     z: position.z
                 )
                 
                 for row in -5..<5 {
                     for column in -5..<5 {
-//                        let position =
                         let rowOffset = Float(row) * 0.3
                         let columnOffset = Float(column) * 0.3
                         let position = SCNVector3(
@@ -57,7 +57,7 @@ extension BubbleViewController {
     }
     
     func spawnSphere(position: SCNVector3) {
-        let sphereGeometry = SCNSphere(radius: CGFloat.random(in: 0.11...0.14))
+        let sphereGeometry = SCNSphere(radius: CGFloat.random(in: 0.11...0.18))
         
         let material = SCNMaterial()
         material.lightingModel = .blinn
@@ -78,7 +78,6 @@ extension BubbleViewController {
         let hoverSequence = SCNAction.sequence([moveUp, waitAction, moveDown])
         let loopSequence = SCNAction.repeatForever(hoverSequence)
         node.runAction(loopSequence)
-        
         
         self.nodes.append(node)
         self.sceneView.scene.rootNode.addChildNode(node)
