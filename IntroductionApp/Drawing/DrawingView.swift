@@ -26,8 +26,19 @@ struct DrawingView: View {
                         .allowsHitTesting(false)
                 }
                 .overlay(alignment: .topLeading) {
-                    Text(verbatim: "Connected to: \(model.connectedPeers.map { $0.displayName })")
-                        .padding()
+                    HStack {
+                        if admin {
+                            Button {
+                                model.canvasView.drawing = PKDrawing()
+                                model.update()
+                            } label: {
+                                Text("Clear Drawing")
+                            }
+                        }
+                        
+                        Text(verbatim: "Connected to: \(model.connectedPeers.map { $0.displayName })")
+                    }
+                    .padding()
                 }
                 PaletteView(selectedColor: $selectedColor)
             }

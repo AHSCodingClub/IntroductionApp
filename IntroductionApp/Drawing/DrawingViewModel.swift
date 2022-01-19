@@ -99,12 +99,19 @@ extension DrawingViewModel: MCSessionDelegate {
             let receivedDrawing = try PKDrawing(data: data)
             DispatchQueue.main.async {
                 
-                self.receivedStrokes = receivedDrawing.strokes
-                if !self.isDrawing {
-                    var strokes = self.canvasView.drawing.strokes + self.receivedStrokes
-                    strokes = strokes.uniqued()
-                    self.canvasView.drawing.strokes = strokes
+                if receivedDrawing.strokes.count == 0 {
+                    self.receivedStrokes = []
+                    self.canvasView.drawing.strokes = []
+                } else {
+                    self.receivedStrokes = receivedDrawing.strokes
+                    if !self.isDrawing {
+                        var strokes = self.canvasView.drawing.strokes + self.receivedStrokes
+                        strokes = strokes.uniqued()
+                        self.canvasView.drawing.strokes = strokes
+                    }
                 }
+                
+                
             }
         } catch {
             print("Couldn't make drawing: \(error)")
