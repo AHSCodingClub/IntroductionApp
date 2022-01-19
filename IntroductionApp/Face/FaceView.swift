@@ -10,6 +10,7 @@
 import SwiftUI
 
 struct FaceView: View {
+    var admin: Bool
     @Binding var index: Int
     @ObservedObject var globalViewModel: GlobalViewModel
     @StateObject var model = FaceViewModel()
@@ -34,11 +35,12 @@ struct FaceView: View {
                     .opacity(showingCamera ? 0 : 1)
             }
             .overlay(alignment: .topLeading) {
-                TopBarView(index: $index, globalViewModel: globalViewModel, showingCamera: $showingCamera)
+                TopBarView(admin: admin, index: $index, globalViewModel: globalViewModel, showingCamera: $showingCamera)
             }
     }
 }
 struct TopBarView: View {
+    var admin: Bool
     @Binding var index: Int
     @ObservedObject var globalViewModel: GlobalViewModel
     @Binding var showingCamera: Bool
@@ -86,4 +88,4 @@ struct TopBarView: View {
         }
     }
 }
-//VideoViewController
+

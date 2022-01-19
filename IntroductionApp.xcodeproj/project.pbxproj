@@ -19,6 +19,10 @@
 		3CAD8BF12797CC85007B55BA /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAD8BF02797CC85007B55BA /* VideoViewController.swift */; };
 		3CAD8BF32797CDEE007B55BA /* VideoVC+Vision.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAD8BF22797CDEE007B55BA /* VideoVC+Vision.swift */; };
 		3CAD8BF52797CE7D007B55BA /* VideoVC+Drawing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAD8BF42797CE7D007B55BA /* VideoVC+Drawing.swift */; };
+		3CAD8BF727987519007B55BA /* BubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAD8BF627987519007B55BA /* BubbleView.swift */; };
+		3CAD8BFA279875D1007B55BA /* BubbleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAD8BF9279875D1007B55BA /* BubbleViewController.swift */; };
+		3CAD8BFC279875F8007B55BA /* BubbleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAD8BFB279875F8007B55BA /* BubbleViewModel.swift */; };
+		3CAD8BFE27987E70007B55BA /* BubbleVC+AR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAD8BFD27987E70007B55BA /* BubbleVC+AR.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +40,10 @@
 		3CAD8BF02797CC85007B55BA /* VideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
 		3CAD8BF22797CDEE007B55BA /* VideoVC+Vision.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VideoVC+Vision.swift"; sourceTree = "<group>"; };
 		3CAD8BF42797CE7D007B55BA /* VideoVC+Drawing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VideoVC+Drawing.swift"; sourceTree = "<group>"; };
+		3CAD8BF627987519007B55BA /* BubbleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleView.swift; sourceTree = "<group>"; };
+		3CAD8BF9279875D1007B55BA /* BubbleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleViewController.swift; sourceTree = "<group>"; };
+		3CAD8BFB279875F8007B55BA /* BubbleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleViewModel.swift; sourceTree = "<group>"; };
+		3CAD8BFD27987E70007B55BA /* BubbleVC+AR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BubbleVC+AR.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,9 +79,10 @@
 				3CAD8BEC2797B2B4007B55BA /* Info.plist */,
 				3CAD8BD527979FEE007B55BA /* IntroductionAppApp.swift */,
 				3CAD8BD727979FEE007B55BA /* ContentView.swift */,
-				3CAD8BEF2797CC78007B55BA /* Face */,
-				3CAD8BEB2797ACE7007B55BA /* Drawing */,
 				3CAD8BE52797A3A6007B55BA /* IntroView.swift */,
+				3CAD8BEB2797ACE7007B55BA /* Drawing */,
+				3CAD8BEF2797CC78007B55BA /* Face */,
+				3CAD8BF827987522007B55BA /* Bubbles */,
 				3CAD8BE32797A092007B55BA /* Utilities.swift */,
 				3CAD8BD927979FEF007B55BA /* Assets.xcassets */,
 				3CAD8BDB27979FEF007B55BA /* Preview Content */,
@@ -107,6 +116,17 @@
 				3CAD8BF42797CE7D007B55BA /* VideoVC+Drawing.swift */,
 			);
 			path = Face;
+			sourceTree = "<group>";
+		};
+		3CAD8BF827987522007B55BA /* Bubbles */ = {
+			isa = PBXGroup;
+			children = (
+				3CAD8BF627987519007B55BA /* BubbleView.swift */,
+				3CAD8BFB279875F8007B55BA /* BubbleViewModel.swift */,
+				3CAD8BF9279875D1007B55BA /* BubbleViewController.swift */,
+				3CAD8BFD27987E70007B55BA /* BubbleVC+AR.swift */,
+			);
+			path = Bubbles;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -180,13 +200,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				3CAD8BE42797A092007B55BA /* Utilities.swift in Sources */,
+				3CAD8BFE27987E70007B55BA /* BubbleVC+AR.swift in Sources */,
 				3CAD8BE62797A3A6007B55BA /* IntroView.swift in Sources */,
 				3CAD8BF12797CC85007B55BA /* VideoViewController.swift in Sources */,
 				3CAD8BEE2797CAD0007B55BA /* FaceView.swift in Sources */,
+				3CAD8BFA279875D1007B55BA /* BubbleViewController.swift in Sources */,
+				3CAD8BFC279875F8007B55BA /* BubbleViewModel.swift in Sources */,
 				3CAD8BE82797A3EF007B55BA /* DrawingView.swift in Sources */,
 				3CAD8BD827979FEE007B55BA /* ContentView.swift in Sources */,
 				3CAD8BF32797CDEE007B55BA /* VideoVC+Vision.swift in Sources */,
 				3CAD8BF52797CE7D007B55BA /* VideoVC+Drawing.swift in Sources */,
+				3CAD8BF727987519007B55BA /* BubbleView.swift in Sources */,
 				3CAD8BD627979FEE007B55BA /* IntroductionAppApp.swift in Sources */,
 				3CAD8BEA2797ACE4007B55BA /* DrawingViewModel.swift in Sources */,
 			);

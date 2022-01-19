@@ -10,7 +10,10 @@
 import SwiftUI
 
 struct IntroView: View {
+    @Binding var admin: Bool
     @Binding var index: Int
+    @State var showingSheet = false
+    @State var adminPass = ""
     
     var body: some View {
         VStack(spacing: 32) {
@@ -69,5 +72,26 @@ struct IntroView: View {
         .cornerRadius(64)
         .shadow(color: .black.opacity(0.3), radius: 16, x: 0, y: 3)
         .padding(64)
+        .overlay(alignment: .bottomTrailing) {
+            Button {
+                showingSheet = true
+            } label: {
+                Image(systemName: "ellipsis")
+                    .foregroundColor(.white)
+                    .frame(width: 64, height: 64)
+                    .background(Color.black.opacity(0.25))
+                    .cornerRadius(32)
+                    .padding()
+            }
+        }
+        .sheet(isPresented: $showingSheet) {
+            TextField("Enter key to start", text: $adminPass)
+        }
+        .onChange(of: adminPass) { newValue in
+            if adminPass.lowercased() == "admin" {
+                admin = true
+                showingSheet = false
+            }
+        }
     }
 }

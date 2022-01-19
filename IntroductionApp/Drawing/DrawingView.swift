@@ -10,6 +10,7 @@ import PencilKit
 import SwiftUI
 
 struct DrawingView: View {
+    @Binding var admin: Bool
     @Binding var index: Int
     @ObservedObject var globalViewModel: GlobalViewModel
     @StateObject var model = DrawingViewModel()
@@ -85,7 +86,6 @@ struct DrawingView: View {
             .onChange(of: selectedColor) { newValue in
                 model.colorChanged?()
             }
-            
             .onAppear {
                 globalViewModel.updateImage = {
                     let image = model.canvasView.drawing.image(from: model.canvasView.bounds, scale: 2)
@@ -93,7 +93,7 @@ struct DrawingView: View {
                 }
             }
         } else {
-            IntroView(index: .constant(0))
+            IntroView(admin: $admin, index: .constant(0))
         }
     }
 }
