@@ -75,7 +75,7 @@ extension VideoViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
         }
         let image = UIImage(pixelBuffer: pixelBuffer)
         
-        let exifOrientation = CGImagePropertyOrientation.upMirrored
+        let exifOrientation = CGImagePropertyOrientation.downMirrored
         
         guard let requests = self.trackingRequests, !requests.isEmpty else {
             // No tracking object detected, so perform initial detection

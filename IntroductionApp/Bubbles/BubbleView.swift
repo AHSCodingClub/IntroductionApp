@@ -9,6 +9,22 @@
 
 import SwiftUI
 
+struct BubbleButton: View {
+    let title: String
+    let action: (() -> Void)
+    var body: some View {
+        Button {
+            action()
+        } label: {
+            Text(title)
+                .font(.largeTitle.bold())
+                .foregroundColor(.blue)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .background(Color(uiColor: .secondarySystemBackground))
+                .cornerRadius(24)
+        }
+    }
+}
 struct BubbleView: View {
     var admin: Bool
     @Binding var index: Int
@@ -21,13 +37,36 @@ struct BubbleView: View {
                 ForEach(model.handPositions, id: \.x.self) { point in
                     Circle()
                         .fill(.white)
-                        .frame(width: 50, height: 50)
+                        .frame(width: 30, height: 30)
                         .position(point)
+                }
+            }
+            .overlay {
+                VStack {
+                    Spacer()
+                    
+                    HStack {
+                        BubbleButton(title: "Clear") {
+                            model.clear?()
+                        }
+                        
+                        BubbleButton(title: "Spawn") {
+                            model.spawn?()
+                        }
+                        
+                        BubbleButton(title: "...") {
+                            model.go?()
+                        }
+                    }
+                    .frame(height: 100)
+                    .padding()
+                    .background(Color(uiColor: .systemBackground))
                 }
             }
             .overlay(alignment: .top) {
                 BubbleTopBarView(admin: admin, index: $index, globalViewModel: globalViewModel)
             }
+            .ignoresSafeArea()
     }
 }
 

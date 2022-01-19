@@ -84,7 +84,7 @@ class VideoViewController: UIViewController {
             let connection = previewLayer.connection {
             let orientation = UIDevice.current.orientation
             if connection.isVideoOrientationSupported,
-                let videoOrientation = AVCaptureVideoOrientation(rawValue: 4) {
+                let videoOrientation = AVCaptureVideoOrientation(rawValue: 0) {
                 previewLayer.frame = self.view.bounds
                 connection.videoOrientation = videoOrientation
             }

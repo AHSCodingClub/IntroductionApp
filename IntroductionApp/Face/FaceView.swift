@@ -14,7 +14,7 @@ struct FaceView: View {
     @Binding var index: Int
     @ObservedObject var globalViewModel: GlobalViewModel
     @StateObject var model = FaceViewModel()
-    @State var showingCamera = true
+    @State var showingCamera = false
     
     var body: some View {
         VideoViewControllerRepresentable(model: model)

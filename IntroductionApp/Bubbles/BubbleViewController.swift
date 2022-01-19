@@ -41,7 +41,6 @@ class BubbleViewController: UIViewController, ARSCNViewDelegate {
         super.init(nibName: nil, bundle: nil)
     }
 
-    var crosshairImageView: UIImageView!
 
     override func loadView() {
         super.loadView()
@@ -67,15 +66,7 @@ class BubbleViewController: UIViewController, ARSCNViewDelegate {
         sceneView.autoenablesDefaultLighting = true
         sceneView.session.run(configuration)
         sceneView.session.delegate = self
-    }
-
-    func getPosition() -> simd_float4? {
-        let touchLocation = crosshairImageView.center
-        let results = sceneView.hitTest(touchLocation, types: .existingPlaneUsingExtent)
-        if let hitResult = results.first {
-            let position = hitResult.worldTransform.columns.3
-            return position
-        }
-        return nil
+        
+        setup()
     }
 }
