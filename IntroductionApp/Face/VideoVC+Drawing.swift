@@ -91,6 +91,9 @@ extension VideoViewController {
             height: faceObservation.boundingBox.height * view.bounds.height
         )
         
+        let center = CGPoint(x: faceBounds.midX, y: faceBounds.midY)
+        model.updateCenter(center: center)
+        
         faceRectanglePath.addRect(faceBounds)
         
         if let landmarks = faceObservation.landmarks {

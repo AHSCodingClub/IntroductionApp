@@ -10,7 +10,15 @@ import AVFoundation
 import SwiftUI
 import Vision
 
-class FaceViewModel: ObservableObject {}
+class FaceViewModel: ObservableObject {
+    @Published var center = CGPoint.zero
+    
+    func updateCenter(center: CGPoint) {
+        withAnimation(.linear(duration: 0.05)) {
+            self.center = center
+        }
+    }
+}
 
 struct VideoViewControllerRepresentable: UIViewControllerRepresentable {
     @ObservedObject var model: FaceViewModel

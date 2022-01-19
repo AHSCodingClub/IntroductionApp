@@ -85,6 +85,13 @@ struct DrawingView: View {
             .onChange(of: selectedColor) { newValue in
                 model.colorChanged?()
             }
+            
+            .onAppear {
+                globalViewModel.updateImage = {
+                    let image = model.canvasView.drawing.image(from: model.canvasView.bounds, scale: 2)
+                    globalViewModel.drawingImage = image
+                }
+            }
         } else {
             IntroView(index: .constant(0))
         }
@@ -195,6 +202,7 @@ struct CanvasView: UIViewRepresentable {
         func canvasViewDidBeginUsingTool(_ canvasView: PKCanvasView) {
             model.isDrawing = true
         }
+
         func canvasViewDidEndUsingTool(_ canvasView: PKCanvasView) {
             model.isDrawing = false
             

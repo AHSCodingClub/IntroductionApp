@@ -13,6 +13,7 @@ let admin = UIDevice.current.name == "iPad Pro"
 
 class GlobalViewModel: ObservableObject {
     @Published var drawingImage: UIImage?
+    var updateImage: (() -> Void)?
 }
 struct ContentView: View {
     @StateObject var globalViewModel = GlobalViewModel()
