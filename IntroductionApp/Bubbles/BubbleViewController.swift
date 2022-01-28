@@ -30,6 +30,7 @@ class BubbleViewController: UIViewController, ARSCNViewDelegate {
 
     
     var startTime: Date?
+    var bigCircleStartTime = Date()
     var nodes = [SCNNode]()
     var currentBigCircleIndex = 0
 

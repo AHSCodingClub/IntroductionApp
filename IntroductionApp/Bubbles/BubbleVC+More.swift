@@ -34,6 +34,9 @@ extension BubbleViewController {
             let results = sceneView.hitTest(point, options: [SCNHitTestOption.searchMode : 1])
             if let hitResult = results.first {
                 if hitResult.node.name == "Big Sphere" {
+                    guard bigCircleStartTime.addingTimeInterval(1) <= Date() else { return }
+                    bigCircleStartTime = Date()
+                    
                     let scale = SCNAction.scale(to: 1.1, duration: 0.1)
                     hitResult.node.runAction(scale)
                     
@@ -72,10 +75,6 @@ extension BubbleViewController {
                     let opacity = SCNAction.fadeOpacity(to: 0, duration: 0.1)
                     let group = SCNAction.group([scale, opacity])
                     hitResult.node.runAction(group)
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.12) {
-                        self.nodes.removeAll(where: { $0.position.x == hitResult.node.position.x })
-                        hitResult.node.removeFromParentNode()
-                    }
 
                     let sound = files.randomElement()!
                     GSAudio.sharedInstance.playSound(soundFileName: sound)
@@ -95,7 +94,7 @@ extension BubbleViewController {
             sceneView.scene.rootNode.addChildNode(node)
             
             let box = SCNBox(width: 1, height: 1, length: 0.1, chamferRadius: 0)
-            box.firstMaterial?.diffuse.contents = UIImage(named: "Texture1")!
+            box.firstMaterial?.diffuse.contents = UIImage(named: "Texture2")!
             let boxNode = SCNNode(geometry: box)
             sceneView.scene.rootNode.addChildNode(boxNode)
             
